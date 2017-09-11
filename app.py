@@ -1,2 +1,14 @@
 from flask import Flask
-from flask_slackbot import SlackBot
+import os
+
+app = Flask(__name__)
+
+
+@app.route('/hello', methods=['POST'])
+def hello():
+    return 'Hello Slack!'
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)

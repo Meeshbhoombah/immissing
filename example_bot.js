@@ -69,7 +69,7 @@ if (!process.env.token) {
     process.exit(1);
 }
 
-var Botkit = require('../lib/Botkit.js');
+var Botkit = require('Botkit');
 var os = require('os');
 
 var controller = Botkit.slackbot({
@@ -223,8 +223,15 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
         bot.reply(message,
             ':robot_face: I am a bot named <@' + bot.identity.name +
              '>. I have been running for ' + uptime + ' on ' + hostname + '.');
+});
 
-    });
+
+controller.hears(['kill yourself'],'direct_message,direct_mention,mention', function(bot, message) {
+
+    bot.reply(message,
+    'u first idiot')
+
+});
 
 function formatUptime(uptime) {
     var unit = 'second';

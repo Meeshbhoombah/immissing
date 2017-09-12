@@ -1,0 +1,24 @@
+{
+  "name": "immissing",
+  "version": "1.0.0",
+  "description": "A Slackbot for the Make School Slack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meeshbhoombah/immissing.git"
+  },
+  "author": "Rohan Mishra <rohanmishra2017@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Meeshbhoombah/immissing/issues"
+  },
+  "homepage": "https://github.com/Meeshbhoombah/immissing#readme",
+  "dependencies": {
+    "botkit": "^0.6.0",
+    "slackbots": "^0.3.0",
+    "sqlite3": "^3.1.10"
+  }
+}

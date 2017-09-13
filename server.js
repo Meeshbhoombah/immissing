@@ -42,11 +42,14 @@ var controller = botkit.slackbot({debug: true})
 
 // BOT: DAILY SIGN IN
 // Create recurrence rule to execute everyday between M - F at 9:00 AM
-var rule = new schedule.RecurrenceRule();
-rule.dayOfWeek = [new schedule.Range(1, 5)];
-rule.hour = 9;
+var signInTime = new schedule.RecurrenceRule();
+signInTime.dayOfWeek = 3;
+signInTime.hour = 3;
+signInTime.minute = 0;
 
-// TODO - replace function() w/ actual funciton to be executed
-var startSignIn = schedule.scheduleJob(rule, function() {
+var endSignInTime = signInTime;
+endSignInTime.minute = 45;
 
+var startSignIn = schedule.scheduleJob(signInTime, function() {
+  console.log("Hellooo");
 });

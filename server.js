@@ -41,6 +41,12 @@ app.listen(secret.port, function(err) {
 var controller = botkit.slackbot({debug: true})
 
 // BOT: DAILY SIGN IN
-// Bot sends message everyday, M - F at 9:00 AM, closes Sign In at 9:45 AM
-let startTime = new Date('0 9 * # 1-5')
-let endTime = new Date('45 9 * # 1-5')
+// Create recurrence rule to execute everyday between M - F at 9:00 AM
+var rule = new schedule.RecurrenceRule();
+rule.dayOfWeek = [new schedule.Range(1, 5)];
+rule.hour = 9;
+
+// TODO - replace function() w/ actual funciton to be executed
+var startSignIn = schedule.scheduleJob(rule, function() {
+
+});

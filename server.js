@@ -44,7 +44,7 @@ var controller = botkit.slackbot({debug: true})
 // Create recurrence rule to execute everyday between M - F at 9:00 AM
 var signInTime = new schedule.RecurrenceRule();
 signInTime.dayOfWeek = 3;
-signInTime.hour = 3;
+signInTime.hour = 9;
 signInTime.minute = 0;
 
 var endSignInTime = signInTime;
@@ -53,3 +53,11 @@ endSignInTime.minute = 45;
 var startSignIn = schedule.scheduleJob(signInTime, function() {
   console.log("Hellooo");
 });
+
+// BOT: /immissing [date] [class] [note]
+
+// BOT: /imlate [class]
+
+// BOT: /absences
+
+// BOT: Jade only - /attendance

@@ -38,12 +38,12 @@ app.listen(secret.port, function(err) {
 });
 
 // BOT: SET UP
-var controller = botkit.slackbot({debug: true})
+var makeBot = botkit.slackbot({debug: true})
 
 // BOT: DAILY SIGN IN
 // Create recurrence rule to execute everyday between M - F at 9:00 AM
 var signInTime = new schedule.RecurrenceRule();
-signInTime.dayOfWeek = 3;
+signInTime.dayOfWeek = 1-5;
 signInTime.hour = 9;
 signInTime.minute = 0;
 
@@ -51,7 +51,33 @@ var endSignInTime = signInTime;
 endSignInTime.minute = 45;
 
 var startSignIn = schedule.scheduleJob(signInTime, function() {
-  console.log("Hellooo");
+  makeBot.startPrivateConversation(message, {
+    attachments:[
+      {
+        title: 'Do you want to interact with my buttons?',
+        callback_id: '123',
+        attachment_type: 'default',
+        actions: [
+            {
+                "name":"yes",
+                "text": "Yes",
+                "value": "yes",
+                "type": "button",
+            },
+            {
+                "name":"no",
+                "text": "No",
+                "value": "no",
+                "type": "button",
+            }
+        ]
+      }
+    ]
+  });
+});
+
+var endSignIn = schedule.scheduleJob(endSignInTime, function() {
+  startSignIn.cancel(true)
 });
 
 // BOT: /immissing [date] [class] [note]

@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var botkit = require('botkit');
+var schedule = require('node-schedule');
 // var flash = require('express-flash');
 var MongoStore = require('connect-mongo/es5')(session);
 // var passport = require('passport');
@@ -34,3 +36,11 @@ app.listen(secret.port, function(err) {
   if (err) throw err;
   console.log("Server is Running on port " + secret.port);
 });
+
+// BOT: SET UP
+var controller = botkit.slackbot({debug: true})
+
+// BOT: DAILY SIGN IN
+// Bot sends message everyday, M - F at 9:00 AM, closes Sign In at 9:45 AM
+let startTime = new Date('0 9 * # 1-5')
+let endTime = new Date('45 9 * # 1-5')
